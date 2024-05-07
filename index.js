@@ -1,13 +1,13 @@
 'use strict';
 
-const sequelize = require('./src/auth/models/index.js');
+const {sequelize} = require('./src/auth/models/index.js');
 
 require('dotenv').config();
-const app = require('./src/server');
+const {start} = require('./src/server');
 
 sequelize.sync()
   .then(() => {
-    app.listen(3000, () => console.log('server up'));
+    start(3000);
   }).catch(e => {
     console.error('Could not start server', e.message);
   });
